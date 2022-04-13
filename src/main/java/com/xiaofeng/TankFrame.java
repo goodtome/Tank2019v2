@@ -39,7 +39,7 @@ public class TankFrame extends Frame {
  * */
     @Override
     public void paint(Graphics g) {
-/*//        设置方块
+/*        设置方块
         g.fillRect(x,y,50,50);*/
         myTank.paint(g);
         enemy.paint(g);

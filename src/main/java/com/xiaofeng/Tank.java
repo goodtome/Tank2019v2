@@ -9,13 +9,15 @@ import java.awt.event.KeyEvent;
  * @create 2022/4/12 6:46 上午
  */
 public class Tank {
+    public static final int SPEED= 5 ;
     private int x,y;
 //    坦克的方向变量
     private Dir dir;
 //    定义按下的建变量
     private boolean bL ,bU , bR ,bD;
+//    坦克静止状态的变量
+    private boolean moving = false;
 
-    public static final int SPEED= 5 ;
 
 
 
@@ -33,7 +35,30 @@ public class Tank {
         move();
     }
 
+
+
 //   坦克移动的方法
+    private void move() {
+        if (!moving) {
+            return;
+        }
+        switch (dir) {
+            case L:
+                x -= SPEED ;
+                break;
+            case U:
+                y -= SPEED ;
+                break;
+            case R :
+                x += SPEED;
+                break;
+            case D:
+                y += SPEED;
+                break;
+        }
+    }
+
+//    键盘按下和抬起的方法
     public void keyPressed(KeyEvent e) {
         int key = e.getKeyCode();
         switch (key) {
@@ -64,23 +89,6 @@ public class Tank {
 
     }
 
-    private void move() {
-        switch (dir) {
-            case L:
-                x -= SPEED ;
-                break;
-            case U:
-                y -= SPEED ;
-                break;
-            case R :
-                x += SPEED;
-                break;
-            case D:
-                y += SPEED;
-                break;
-        }
-    }
-
     public void keyReleased(KeyEvent e) {
         int key = e.getKeyCode();
         switch (key) {
@@ -105,8 +113,11 @@ public class Tank {
     private void setMainDir() {
         if (!bL && !bU && !bR && !bD) {
 //            定义在几个建都么有按下的时候，就停止
-            dir = Dir.STOP;
+//            dir = Dir.STOP;
+            moving = false;
         }
+//        键盘其他键位变化
+        moving = true;
         if (bL && !bU && !bR && !bD) {
             dir = Dir.L;
         }
