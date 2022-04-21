@@ -1,7 +1,4 @@
-package com.xiaofeng;
-
-import java.awt.*;
-import java.util.concurrent.TimeUnit;
+package com.mashibing.tank;
 
 /**
  * @project Tank2019v2

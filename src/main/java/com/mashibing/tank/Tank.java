@@ -1,7 +1,12 @@
-package com.xiaofeng;
+package com.mashibing.tank;
 
+import com.mashibing.until.ResourceMgr;
+
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * @project Tank2019v2
@@ -17,21 +22,43 @@ public class Tank {
     private boolean bL ,bU , bR ,bD;
 //    坦克静止状态的变量
     private boolean moving = false;
+//    对分组进行指定
+    private final Group group;
 
 
 
 
 
-    public Tank(int x, int y, Dir r) {
+
+    public Tank(int x, int y, Dir dir ,Group group) {
         this.x = x;
         this.y = y;
         this.dir=dir;
+        this.group = group;
     }
 
-    public  void paint(Graphics g){
-        g.fillRect(x,y,50,50);
 
-        //        移动
+    public  void paint(Graphics g){
+//        g.fillRect(x,y,50,50);
+
+        //画图，调佣工具类的方法, 只用加载一次就可以
+        switch (dir){
+            case L  :
+                g.drawImage(ResourceMgr.goodTankL,x,y,null);
+                break;
+            case U  :
+                g.drawImage(ResourceMgr.goodTankU,x,y,null);
+                break;
+            case R  :
+                g.drawImage(ResourceMgr.goodTankR,x,y,null);
+                break;
+            case D  :
+                g.drawImage(ResourceMgr.goodTankD,x,y,null);
+                break;
+
+        }
+
+        // 移动
         move();
     }
 
@@ -116,8 +143,11 @@ public class Tank {
 //            dir = Dir.STOP;
             moving = false;
         }
+        else
 //        键盘其他键位变化
-        moving = true;
+        {
+            moving = true;
+        }
         if (bL && !bU && !bR && !bD) {
             dir = Dir.L;
         }

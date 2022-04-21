@@ -1,4 +1,4 @@
-package com.xiaofeng;
+package com.mashibing.tank;
 
 /**
  * @project Tank2019v2
