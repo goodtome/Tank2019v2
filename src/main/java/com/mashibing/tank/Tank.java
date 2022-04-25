@@ -38,24 +38,43 @@ public class Tank {
     }
 
 
-    public  void paint(Graphics g){
+    public  void paint(Graphics g) {
 //        g.fillRect(x,y,50,50);
 
-        //画图，调佣工具类的方法, 只用加载一次就可以
-        switch (dir){
-            case L  :
-                g.drawImage(ResourceMgr.goodTankL,x,y,null);
-                break;
-            case U  :
-                g.drawImage(ResourceMgr.goodTankU,x,y,null);
-                break;
-            case R  :
-                g.drawImage(ResourceMgr.goodTankR,x,y,null);
-                break;
-            case D  :
-                g.drawImage(ResourceMgr.goodTankD,x,y,null);
-                break;
+        if (this.group == Group.GOOD) {
+            //画图，调佣工具类的方法, 只用加载一次就可以
+            switch (dir) {
+                case L:
+                    g.drawImage(ResourceMgr.goodTankL, x, y, null);
+                    break;
+                case U:
+                    g.drawImage(ResourceMgr.goodTankU, x, y, null);
+                    break;
+                case R:
+                    g.drawImage(ResourceMgr.goodTankR, x, y, null);
+                    break;
+                case D:
+                    g.drawImage(ResourceMgr.goodTankD, x, y, null);
+                    break;
+            }
+        }
 
+        if (this.group == Group.BAD) {
+            //画图，调佣工具类的方法, 只用加载一次就可以
+            switch (dir) {
+                case L:
+                    g.drawImage(ResourceMgr.badTankL, x, y, null);
+                    break;
+                case U:
+                    g.drawImage(ResourceMgr.badTankU, x, y, null);
+                    break;
+                case R:
+                    g.drawImage(ResourceMgr.badTankR, x, y, null);
+                    break;
+                case D:
+                    g.drawImage(ResourceMgr.badTankD, x, y, null);
+                    break;
+            }
         }
 
         // 移动
